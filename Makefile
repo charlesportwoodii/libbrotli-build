@@ -46,10 +46,10 @@ fpm_rpm:
 
 	fpm -s dir \
 		-t rpm \
-		-n $(RELEASENAME) \
+		-n libbrotli \
 		-v $(RELEASEVER) \
 		-C /tmp/libbrotli-install \
-		-p libbrotli_$(RELEASEVER)~_$(shell arch).rpm \
+		-p libbrotli_$(RELEASEVER)_$(shell arch).rpm \
 		-m "charlesportwoodii@erianna.com" \
 		--license "MIT" \
 		--url https://github.com/charlesportwoodii/libbrotli-build \
