@@ -25,6 +25,9 @@ fpm_debian:
 
 	cd /tmp/libbrotli && make install DESTDIR=/tmp/libbrotli-install
 
+	mkdir -p /tmp/libbrotli-install/etc/ld.so.conf.d/
+	echo "/usr/local/lib/" > /tmp/libbrotli-install/etc/ld.so.conf.d/libbrotli.conf
+
 	fpm -s dir \
 		-t deb \
 		-n libbrotli \
@@ -41,6 +44,9 @@ fpm_rpm:
 	echo "Packaging libbrotli for RPM"
 
 	cd /tmp/libbrotli && make install DESTDIR=/tmp/libbrotli-install
+
+	mkdir -p /tmp/libbrotli-install/etc/ld.so.conf.d/
+	echo "/usr/local/lib/" > /tmp/libbrotli-install/etc/ld.so.conf.d/libbrotli.conf
 
 	fpm -s dir \
 		-t rpm \
