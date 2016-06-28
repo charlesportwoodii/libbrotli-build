@@ -20,22 +20,40 @@ libbrotli:
 	cd /tmp/libbrotli && \
 	./autogen.sh && \
 	./configure && \
-	make -j$(CORES) && \
-	make install
+	make -j$(CORES)
 
-package:
-	# Copy Packaging tools
-	cp -R $(SCRIPTPATH)/*-pak /tmp/libbrotli
+fpm_debian:
+	echo "Packaging libbrotli for Debian"
 
-	cd /tmp/libbrotli && \
-	checkinstall \
-		-D \
-		--fstrans \
-		-pkgname libbrotli \
-		-pkgrelease "$(RELEASEVER)"~"$(RELEASE)" \
-		-pkglicense MIT \
-		-pkggroup lua \
-		-maintainer charlesportwoodii@ethreal.net \
-		-provides "libbrotli" \
-		-pakdir /tmp \
-		-y
+	cd /tmp/libbrotli && make install DESTDIR=/tmp/libbrotli-install
+
+	fpm -s dir \
+		-t deb \
+		-n libbrotli \
+		-v $(RELEASEVER)~$(shell lsb_release --codename | cut -f2) \
+		-C /tmp/libbrotli-install \
+		-p libbrotli_$(RELEASEVER)~$(shell lsb_release --codename | cut -f2)_$(shell arch).deb \
+		-m "charlesportwoodii@erianna.com" \
+		--license "MIT" \
+		--url https://github.com/charlesportwoodii/librotli-build \
+		--description "libbrotli" \
+		--deb-systemd-restart-after-upgrade
+
+fpm_rpm:
+	echo "Packaging libbrotli for RPM"
+
+	cd /tmp/libbrotli && make install DESTDIR=/tmp/libbrotli-install
+
+	fpm -s dir \
+		-t rpm \
+		-n $(RELEASENAME) \
+		-v $(RELEASEVER) \
+		-C /tmp/libbrotli-install \
+		-p php-fpm-$(VERSION)_$(RELEASEVER).$(shell arch).rpm \
+		-m "charlesportwoodii@erianna.com" \
+		--license "MIT" \
+		--url https://github.com/charlesportwoodii/libbrotli-build \
+		--description "libbrotli" \
+		--vendor "Charles R. Portwood II" \
+		--rpm-digest sha384 \
+		--rpm-compression gzip

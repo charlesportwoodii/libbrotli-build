@@ -3,6 +3,8 @@
 ```
 git clone https://github.com/charlesportwoodii/libbrotli-build
 cd libbrotli-build
-sudo make
-sudo package # build package with
+make
+make fpm_debian #debian builds
+make fpm_rpm #centos,rhel builds
+
 ```
