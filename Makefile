@@ -1,6 +1,5 @@
 SHELL := /bin/bash
 
-
 RELEASEVER?=1
 SCRIPTPATH=$(shell pwd -P)
 
