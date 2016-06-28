@@ -2,7 +2,6 @@ SHELL := /bin/bash
 
 
 RELEASEVER?=1
-RELEASE=$(shell lsb_release --codename | cut -f2)
 SCRIPTPATH=$(shell pwd -P)
 
 build: clean libbrotli
