@@ -47,7 +47,7 @@ fpm_rpm:
 	fpm -s dir \
 		-t rpm \
 		-n $(RELEASENAME) \
-		-v /tmp/ \
+		-v $(RELEASEVER) \
 		-C /tmp/libbrotli-install \
 		-p libbrotli_$(RELEASEVER)~_$(shell arch).rpm \
 		-m "charlesportwoodii@erianna.com" \
