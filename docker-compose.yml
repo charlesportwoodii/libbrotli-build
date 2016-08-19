@@ -1,0 +1,21 @@
+# docker-compose.yml
+
+version: '2'
+services:
+
+    trusty: 
+        image: charlesportwoodii/docker-images:trusty
+        container_name: trusty_x64
+        command: bash -lc "make build && make fpm_debian"
+        volumes: 
+            - .:/data
+        working_dir: /data
+
+    xenial:
+        image: charlesportwoodii/docker-images:xenial
+        container_name: xenial_x64
+        command: bash -lc "make build && make fpm_debian"
+        volumes: 
+            - .:/data
+        working_dir: /data
+

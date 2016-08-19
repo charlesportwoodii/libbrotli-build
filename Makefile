@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 
 RELEASEVER?=1
+VERSION?=1.0
 SCRIPTPATH=$(shell pwd -P)
 
 build: clean libbrotli
@@ -14,7 +15,7 @@ libbrotli:
 
 	# Download and install libbrotli
 	cd /tmp && \
-	git clone https://github.com/bagder/libbrotli && \
+	git clone https://github.com/bagder/libbrotli --recursive && \
 	cd /tmp/libbrotli && \
 	./autogen.sh && \
 	./configure && \
@@ -31,9 +32,9 @@ fpm_debian:
 	fpm -s dir \
 		-t deb \
 		-n libbrotli \
-		-v $(RELEASEVER)~$(shell lsb_release --codename | cut -f2) \
+		-v $(VERSION)-$(RELEASEVER)~$(shell lsb_release --codename | cut -f2) \
 		-C /tmp/libbrotli-install \
-		-p libbrotli_$(RELEASEVER)~$(shell lsb_release --codename | cut -f2)_$(shell arch).deb \
+		-p libbrotli_$(VERSION)-$(RELEASEVER)~$(shell lsb_release --codename | cut -f2)_$(shell arch).deb \
 		-m "charlesportwoodii@erianna.com" \
 		--license "MIT" \
 		--url https://github.com/charlesportwoodii/librotli-build \
@@ -51,9 +52,9 @@ fpm_rpm:
 	fpm -s dir \
 		-t rpm \
 		-n libbrotli \
-		-v $(RELEASEVER) \
+		-v $(VERSION)_$(RELEASEVER) \
 		-C /tmp/libbrotli-install \
-		-p libbrotli_$(RELEASEVER)_$(shell arch).rpm \
+		-p libbrotli_$(VERSION)-$(RELEASEVER)_$(shell arch).rpm \
 		-m "charlesportwoodii@erianna.com" \
 		--license "MIT" \
 		--url https://github.com/charlesportwoodii/libbrotli-build \
