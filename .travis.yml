@@ -17,7 +17,6 @@ before_install:
   - mkdir -p build/deb/trusty build/deb/xenial build/rpm/CentOS/7/x86_64
 
 script:
-  - source .vs
   - docker-compose run $BUILD_IMAGE
   - mv *xenial*.deb build/deb/xenial || true
   - mv *trusty*.deb build/deb/trusty || true
