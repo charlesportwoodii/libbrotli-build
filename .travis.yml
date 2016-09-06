@@ -4,6 +4,7 @@ dist: trusty
 env:
   - BUILD_IMAGE=xenial
   - BUILD_IMAGE=trusty
+  - BUILD_IMAGE=centos7
 
 language: generic
 services:
@@ -18,8 +19,8 @@ before_install:
 
 script:
   - docker-compose run $BUILD_IMAGE
-  - mv *xenial*.deb build/deb/xenial || true
-  - mv *trusty*.deb build/deb/trusty || true
+  - if [ "$BUILD_IMAGE" == "trusty" ] || [ "$BUILD_IMAGE" == "trusty" ]; then mv *$BUILD_IMAGE*.deb build/deb/$BUILD_IMAGE; fi
+  - if [ "$BUILD_IMAGE" == "centos7" ]; then mv *.rpm build/rpm/CentOS/7/x86_64; fi
 
 deploy:
   provider: s3
