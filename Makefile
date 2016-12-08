@@ -17,6 +17,7 @@ libbrotli:
 	cd /tmp && \
 	git clone https://github.com/bagder/libbrotli --recursive && \
 	cd /tmp/libbrotli && \
+	git checkout libbrotli-$(VERSION) && \
 	./autogen.sh && \
 	./configure && \
 	make -j$(CORES)
