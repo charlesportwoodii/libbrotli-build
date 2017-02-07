@@ -5,6 +5,7 @@ env:
   - BUILD_IMAGE=xenial
   - BUILD_IMAGE=trusty
   - BUILD_IMAGE=centos7
+  - BUILD_IMAGE=rhel7
 
 language: generic
 services:
@@ -15,12 +16,13 @@ before_install:
   - curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-  - mkdir -p build/deb/trusty build/deb/xenial build/rpm/CentOS/7/x86_64
+  - mkdir -p build/deb/trusty build/deb/xenial build/rpm/CentOS/7/x86_64 build/rpm/RHEL/7/x86_64
 
 script:
   - docker-compose run $BUILD_IMAGE
   - if [ "$BUILD_IMAGE" == "trusty" ] || [ "$BUILD_IMAGE" == "xenial" ]; then mv *$BUILD_IMAGE*.deb build/deb/$BUILD_IMAGE; fi
   - if [ "$BUILD_IMAGE" == "centos7" ]; then mv *.rpm build/rpm/CentOS/7/x86_64; fi
+  - if [ "$BUILD_IMAGE" == "rhel7" ]; then mv *.rpm build/rpm/RHEL/7/x86_64; fi
 
 deploy:
   provider: s3
