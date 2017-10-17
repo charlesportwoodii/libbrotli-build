@@ -1,36 +1,37 @@
-# docker-compose.yml
-
-version: '2'
+version: '3'
 services:
-
     trusty: 
         image: charlesportwoodii/trusty:build
         container_name: trusty_x64
         command: bash -lc "make build && make fpm_debian"
         volumes: 
-            - .:/data
+            - ${PWD-.}:/data
         working_dir: /data
-
     xenial:
         image: charlesportwoodii/xenial:build
         container_name: xenial_x64
         command: bash -lc "make build && make fpm_debian"
         volumes: 
-            - .:/data
+            - ${PWD-.}:/data
         working_dir: /data
-
     centos7:
         image: charlesportwoodii/centos7:build
         container_name: centos7_x86_64
         command: bash -lc "make build && make fpm_rpm"
         volumes: 
-            - .:/data
+            - ${PWD-.}:/data
         working_dir: /data
-    
     rhel7:
         image: charlesportwoodii/rhel7:build
         container_name: rhel7_x86_64
         command: bash -lc "make build && make fpm_rpm"
         volumes: 
-            - .:/data
+            - ${PWD-.}:/data
+        working_dir: /data
+    alpine3.6:
+        image: charlesportwoodii/alpine3.6:build
+        container_name: alpine3.6_x86_64
+        command: bash -lc "make build && make fpm_alpine"
+        volumes: 
+            - ${PWD-.}:/data
         working_dir: /data

@@ -6,6 +6,7 @@ env:
   - BUILD_IMAGE=trusty
   - BUILD_IMAGE=centos7
   - BUILD_IMAGE=rhel7
+  - BUILD_IMAGE=alpine3.6
 
 language: generic
 services:
@@ -16,13 +17,13 @@ before_install:
   - curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-  - mkdir -p build/deb/trusty build/deb/xenial build/rpm/CentOS/7/x86_64 build/rpm/RHEL/7/x86_64
+  - mkdir -p build/deb/trusty build/deb/xenial build/rpm/CentOS/7/x86_64 build/rpm/RHEL/7/x86_64 build/alpine/v3.6/x86_64
 
 script:
   - docker-compose run $BUILD_IMAGE
   - if [ "$BUILD_IMAGE" == "trusty" ] || [ "$BUILD_IMAGE" == "xenial" ]; then mv *$BUILD_IMAGE*.deb build/deb/$BUILD_IMAGE; fi
   - if [ "$BUILD_IMAGE" == "centos7" ]; then mv *.rpm build/rpm/CentOS/7/x86_64; fi
-  - if [ "$BUILD_IMAGE" == "rhel7" ]; then mv *.rpm build/rpm/RHEL/7/x86_64; fi
+  - if [ "$BUILD_IMAGE" == "alpine3.6" ]; then mv *.apk build/alpine/v3.6/x86_64; fi
 
 deploy:
   provider: s3
@@ -34,7 +35,8 @@ deploy:
   region: us-west-2
   local_dir: build
   on:
-    all_branches: true
+    tags: true
+    all_branches: false
     repo: charlesportwoodii/libbrotli-build
   secret_access_key:
     secure: b6MFoqls+knOtb1Z9uYg90+X/XCQLwFosxxfkQHMouaOx58rDTRRwxxWc8zGcC7whxTEFWxyccX7FJhtnp/qL1yMyD94zQmZVUnH9IyVBTG/0OXoL/1USV18o2AucT2dOsgi0LmFSkDPZedH8FSfUTJyADeBrwWHDK3nKLlyUFBOBd5ZNwtvxA1RP5cAuKjG6WQNdFgfz2RME3GrWMogcNv0CxM+fvOEprCECoYsHtO23eo++KquCNzaUTyM2h8MLCzycnMgmv+fsCEY9LHzmX64FctvuiWVvUs15IPWOFRwJedBy15nVUvmjBDmcyDMOFGUcmicGNDftga1L3CL8nJcmObKi6r4q1/CUdSjiakhNcJQ9yWuTM/XgTSPnRrqV4rqmhvO5zX/IVX08ZZHGWPCOzEtHT2Kk6464S+OaICup1Q8SAhp4iaL0JspTRG5Ms4q7GtNG/Ca5COeUIEvvuwzfvFQKtnYoN22DvDjQkATELbiLxx5C07pSkCZt6d5J5GkTYGb3gOBHQf9Hkir5Yqp0MbRpE6uyzOW2wSXWdYAjiu152JENhMdC7/iIr30V9rh+ruXT4vVdlAofydDZHyQD32eiwmtQSFNTV5hQ4L0Dqb2o/BwpcGmImt/kh3KUCzaDOJ7GWbdkSCYK+VGOjlg+0widGBV9ju0A5cgoIA=
