@@ -24,6 +24,7 @@ script:
   - docker-compose run $BUILD_IMAGE
   - if [ "$BUILD_IMAGE" == "trusty" ] || [ "$BUILD_IMAGE" == "xenial" ]; then mv *$BUILD_IMAGE*.deb build/deb/$BUILD_IMAGE; fi
   - if [ "$BUILD_IMAGE" == "centos7" ]; then mv *.rpm build/rpm/CentOS/7/x86_64; fi
+  - if [ "$BUILD_IMAGE" == "rhel7" ]; then mv *.rpm build/rpm/RHEL/7/x86_64; fi
   - if [ "$BUILD_IMAGE" == "alpine3.6" ]; then mv *.apk build/alpine/v3.6/x86_64; fi
 
 deploy:
