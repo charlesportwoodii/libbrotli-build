@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
-RELEASEVER?=1
 VERSION?=1.0.1
+RELEASEVER?=1
 SCRIPTPATH=$(shell pwd -P)
 
 build: clean libbrotli pre_package
