@@ -2,7 +2,7 @@ version: '3'
 services:
     trusty: 
         image: charlesportwoodii/trusty:build
-        command: bash -lc "make version VERSION=$VERSION RELEASEVER=$VERSION"
+        command: bash -lc "make build fpm_debian VERSION=$VERSION RELEASEVER=$VERSION"
         volumes: 
             - ${PWD-.}:/data
         working_dir: /data
