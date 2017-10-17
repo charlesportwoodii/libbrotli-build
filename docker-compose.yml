@@ -2,7 +2,7 @@ version: '3.3'
 services:
     trusty: 
         image: charlesportwoodii/trusty:build
-        command: bash -lc "make build fpm_debian VERSION=$VERSION RELEASEVER=$VERSION"
+        command: bash -lc "make build fpm_debian VERSION=$VERSION RELEASEVER=$RELEASEVER"
         volumes: 
             - ${PWD-.}:/data
         working_dir: /data
@@ -11,7 +11,7 @@ services:
             - RELEASEVER=$RELEASEVER
     xenial:
         image: charlesportwoodii/xenial:build
-        command: bash -lc "make build fpm_debian VERSION=$VERSION RELEASEVER=$VERSION"
+        command: bash -lc "make build fpm_debian VERSION=$VERSION RELEASEVER=$RELEASEVER"
         volumes: 
             - ${PWD-.}:/data
         working_dir: /data
@@ -20,7 +20,7 @@ services:
             - RELEASEVER=$RELEASEVER
     centos7:
         image: charlesportwoodii/centos7:build
-        command: bash -lc "make build fpm_rpm VERSION=$VERSION RELEASEVER=$VERSION"
+        command: bash -lc "make build fpm_rpm VERSION=$VERSION RELEASEVER=$RELEASEVER"
         volumes: 
             - ${PWD-.}:/data
         working_dir: /data
@@ -29,7 +29,7 @@ services:
             - RELEASEVER=$RELEASEVER
     rhel7:
         image: charlesportwoodii/rhel7:build
-        command: bash -lc "make build fpm_rpm VERSION=$VERSION RELEASEVER=$VERSION"
+        command: bash -lc "make build fpm_rpm VERSION=$VERSION RELEASEVER=$RELEASEVER"
         volumes: 
             - ${PWD-.}:/data
         working_dir: /data
@@ -38,7 +38,7 @@ services:
             - RELEASEVER=$RELEASEVER
     alpine3.6:
         image: charlesportwoodii/alpine3.6:build
-        command: bash -lc "make build fpm_alpine VERSION=$VERSION RELEASEVER=$VERSION"
+        command: bash -lc "make build fpm_alpine VERSION=$VERSION RELEASEVER=$RELEASEVER"
         volumes: 
             - ${PWD-.}:/data
         working_dir: /data
