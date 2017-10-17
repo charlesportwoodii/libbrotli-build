@@ -39,7 +39,7 @@ fpm_debian:
 		-m "charlesportwoodii@erianna.com" \
 		--license "MIT" \
 		--url https://github.com/charlesportwoodii/librotli-build \
-		--description "brotli (https://github.com/google/brotli)"
+		--description "brotli (https://github.com/google/brotli)" \
 		--force \
 		--deb-systemd-restart-after-upgrade
 
