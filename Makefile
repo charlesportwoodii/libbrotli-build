@@ -32,10 +32,10 @@ pre_package:
 fpm_debian:
 	fpm -s dir \
 		-t deb \
-		-n brotli \
+		-n libbrotli \
 		-v $(VERSION)-$(RELEASEVER)~$(shell lsb_release --codename | cut -f2) \
 		-C /tmp/brotli-install \
-		-p brotli_$(VERSION)-$(RELEASEVER)~$(shell lsb_release --codename | cut -f2)_$(shell arch).deb \
+		-p libbrotli_$(VERSION)-$(RELEASEVER)~$(shell lsb_release --codename | cut -f2)_$(shell arch).deb \
 		-m "charlesportwoodii@erianna.com" \
 		--license "MIT" \
 		--url https://github.com/charlesportwoodii/librotli-build \
@@ -46,10 +46,10 @@ fpm_debian:
 fpm_rpm:
 	fpm -s dir \
 		-t rpm \
-		-n brotli \
+		-n libbrotli \
 		-v $(VERSION)_$(RELEASEVER) \
 		-C /tmp/brotli-install \
-		-p brotli_$(VERSION)-$(RELEASEVER)_$(shell arch).rpm \
+		-p libbrotli_$(VERSION)-$(RELEASEVER)_$(shell arch).rpm \
 		-m "charlesportwoodii@erianna.com" \
 		--license "MIT" \
 		--url https://github.com/charlesportwoodii/brotli-build \
@@ -62,10 +62,10 @@ fpm_rpm:
 fpm_alpine:
 	fpm -s dir \
 		-t apk \
-		-n brotli \
+		-n libbrotli \
 		-v $(VERSION)-$(RELEASEVER)~$(shell uname -m) \
 		-C /tmp/brotli-install \
-		-p brotli_$(VERSION)-$(RELEASEVER)~$(shell uname -m).apk \
+		-p libbrotli_$(VERSION)-$(RELEASEVER)~$(shell uname -m).apk \
 		-m "charlesportwoodii@erianna.com" \
 		--license "MIT" \
 		--url https://github.com/charlesportwoodii/librotli-build \

@@ -26,7 +26,8 @@ script:
   - if [ "$BUILD_IMAGE" == "centos7" ]; then mv *.rpm build/rpm/CentOS/7/x86_64; fi
   - if [ "$BUILD_IMAGE" == "rhel7" ]; then mv *.rpm build/rpm/RHEL/7/x86_64; fi
   - if [ "$BUILD_IMAGE" == "alpine3.6" ]; then mv *.apk build/alpine/v3.6/x86_64; fi
-
+  - find build -type f
+  
 deploy:
   provider: s3
   access_key_id: AKIAJ5QCEUQ2WVNY7GDA
