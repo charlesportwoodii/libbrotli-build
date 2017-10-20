@@ -41,7 +41,8 @@ fpm_debian:
 		--url https://github.com/charlesportwoodii/librotli-build \
 		--description "brotli (https://github.com/google/brotli)" \
 		--force \
-		--deb-systemd-restart-after-upgrade
+		--deb-systemd-restart-after-upgrade \
+		-a $(shell arch) \
 
 fpm_rpm:
 	fpm -s dir \
@@ -57,7 +58,8 @@ fpm_rpm:
 		--vendor "Charles R. Portwood II" \
 		--force \
 		--rpm-digest sha384 \
-		--rpm-compression gzip
+		--rpm-compression gzip \
+		-a $(shell arch) \
 
 fpm_alpine:
 	fpm -s dir \
@@ -70,4 +72,5 @@ fpm_alpine:
 		--license "MIT" \
 		--url https://github.com/charlesportwoodii/librotli-build \
 		--description "brotli (https://github.com/google/brotli)" \
+		-a $(shell uname -m) \
 		--force
