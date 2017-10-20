@@ -29,7 +29,7 @@ pre_package:
 	mkdir -p /tmp/brotli-install/etc/ld.so.conf.d/
 	echo "/usr/local/lib/" > /tmp/brotli-install/etc/ld.so.conf.d/brotli.conf
 
-fpm_debian:
+fpm_debian: pre_package
 	fpm -s dir \
 		-t deb \
 		-n libbrotli \
@@ -41,10 +41,9 @@ fpm_debian:
 		--url https://github.com/charlesportwoodii/librotli-build \
 		--description "brotli (https://github.com/google/brotli)" \
 		--force \
-		--deb-systemd-restart-after-upgrade \
-		-a $(shell arch) \
+		--deb-systemd-restart-after-upgrade
 
-fpm_rpm:
+fpm_rpm: pre_package
 	fpm -s dir \
 		-t rpm \
 		-n libbrotli \
@@ -58,10 +57,9 @@ fpm_rpm:
 		--vendor "Charles R. Portwood II" \
 		--force \
 		--rpm-digest sha384 \
-		--rpm-compression gzip \
-		-a $(shell arch) \
+		--rpm-compression gzip
 
-fpm_alpine:
+fpm_alpine: pre_package
 	fpm -s dir \
 		-t apk \
 		-n libbrotli \
