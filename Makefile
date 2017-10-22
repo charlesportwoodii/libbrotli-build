@@ -65,7 +65,7 @@ fpm_alpine:
 		-n libbrotli \
 		-v $(VERSION)-$(RELEASEVER)~$(shell uname -m) \
 		-C /tmp/brotli-install \
-		-p libbrotli_$(VERSION)-$(RELEASEVER)~$(shell uname -m).apk \
+		-p libbrotli-$(VERSION)-$(RELEASEVER)~$(shell uname -m).apk \
 		-m "charlesportwoodii@erianna.com" \
 		--license "MIT" \
 		--url https://github.com/charlesportwoodii/librotli-build \
