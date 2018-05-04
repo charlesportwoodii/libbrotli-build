@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-VERSION?=1.0.1
+VERSION?=1.0.4
 RELEASEVER?=1
 SCRIPTPATH=$(shell pwd -P)
 
