@@ -1,9 +1,9 @@
 version: '3.3'
 services:
-    trusty: 
+    trusty:
         image: charlesportwoodii/ubuntu:14.04-build
         command: bash -lc "make build fpm_debian VERSION=$VERSION RELEASEVER=$RELEASEVER"
-        volumes: 
+        volumes:
             - ${PWD-.}:/data
         working_dir: /data
         environment:
@@ -12,7 +12,7 @@ services:
     xenial:
         image: charlesportwoodii/ubuntu:16.04-build
         command: bash -lc "make build fpm_debian VERSION=$VERSION RELEASEVER=$RELEASEVER"
-        volumes: 
+        volumes:
             - ${PWD-.}:/data
         working_dir: /data
         environment:
@@ -21,7 +21,7 @@ services:
     bionic:
         image: charlesportwoodii/ubuntu:18.04-build
         command: bash -lc "make build fpm_debian VERSION=$VERSION RELEASEVER=$RELEASEVER"
-        volumes: 
+        volumes:
             - ${PWD-.}:/data
         working_dir: /data
         environment:
@@ -30,7 +30,7 @@ services:
     centos7:
         image: charlesportwoodii/centos:7-build
         command: bash -lc "make build fpm_rpm VERSION=$VERSION RELEASEVER=$RELEASEVER"
-        volumes: 
+        volumes:
             - ${PWD-.}:/data
         working_dir: /data
         environment:
@@ -39,7 +39,7 @@ services:
     rhel7:
         image: charlesportwoodii/rhel:7-build
         command: bash -lc "make build fpm_rpm VERSION=$VERSION RELEASEVER=$RELEASEVER"
-        volumes: 
+        volumes:
             - ${PWD-.}:/data
         working_dir: /data
         environment:
@@ -48,7 +48,7 @@ services:
     alpine3.6:
         image: charlesportwoodii/alpine:3.6-build
         command: bash -lc "make build fpm_alpine VERSION=$VERSION RELEASEVER=$RELEASEVER"
-        volumes: 
+        volumes:
             - ${PWD-.}:/data
         working_dir: /data
         environment:
@@ -57,7 +57,7 @@ services:
     alpine3.7:
         image: charlesportwoodii/alpine:3.7-build
         command: bash -lc "make build fpm_alpine VERSION=$VERSION RELEASEVER=$RELEASEVER"
-        volumes: 
+        volumes:
             - ${PWD-.}:/data
         working_dir: /data
         environment:

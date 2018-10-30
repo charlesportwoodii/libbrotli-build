@@ -9,6 +9,7 @@ env:
   - BUILD_IMAGE=rhel7
   - BUILD_IMAGE=alpine3.6
   - BUILD_IMAGE=alpine3.7
+  - BUILD_IMAGE=alpine3.8
 
 language: generic
 services:
@@ -30,10 +31,10 @@ script:
   - if [ "$BUILD_IMAGE" == "alpine3.6" ]; then mv *.apk build/alpine/v3.6/x86_64; fi
   - if [ "$BUILD_IMAGE" == "alpine3.7" ]; then mv *.apk build/alpine/v3.7/x86_64; fi
   - find build -type f
-  
+
 deploy:
   provider: s3
-  access_key_id: AKIAJ5QCEUQ2WVNY7GDA
+  access_key_id: AKIAINRCDYGMMTSHTIHA
   bucket: travis-packages.erianna.com
   detect_encoding: true
   skip_cleanup: true
@@ -45,5 +46,5 @@ deploy:
     all_branches: false
     repo: charlesportwoodii/libbrotli-build
   secret_access_key:
-    secure: b6MFoqls+knOtb1Z9uYg90+X/XCQLwFosxxfkQHMouaOx58rDTRRwxxWc8zGcC7whxTEFWxyccX7FJhtnp/qL1yMyD94zQmZVUnH9IyVBTG/0OXoL/1USV18o2AucT2dOsgi0LmFSkDPZedH8FSfUTJyADeBrwWHDK3nKLlyUFBOBd5ZNwtvxA1RP5cAuKjG6WQNdFgfz2RME3GrWMogcNv0CxM+fvOEprCECoYsHtO23eo++KquCNzaUTyM2h8MLCzycnMgmv+fsCEY9LHzmX64FctvuiWVvUs15IPWOFRwJedBy15nVUvmjBDmcyDMOFGUcmicGNDftga1L3CL8nJcmObKi6r4q1/CUdSjiakhNcJQ9yWuTM/XgTSPnRrqV4rqmhvO5zX/IVX08ZZHGWPCOzEtHT2Kk6464S+OaICup1Q8SAhp4iaL0JspTRG5Ms4q7GtNG/Ca5COeUIEvvuwzfvFQKtnYoN22DvDjQkATELbiLxx5C07pSkCZt6d5J5GkTYGb3gOBHQf9Hkir5Yqp0MbRpE6uyzOW2wSXWdYAjiu152JENhMdC7/iIr30V9rh+ruXT4vVdlAofydDZHyQD32eiwmtQSFNTV5hQ4L0Dqb2o/BwpcGmImt/kh3KUCzaDOJ7GWbdkSCYK+VGOjlg+0widGBV9ju0A5cgoIA=
+    secure: "d7kREd2SSpMXGOF8/D+S6hPvm2GHuMh0IgDsP+drmOSoJ3V82D67fz9VgGhBptA1wkywoNLWQ2KS4xej5qg89GX8zJ4fR2y4Nz5DWvc68tiSu3BQc0Z40vwSHYvk4cZvpVkrRuDMWccXyMzm/NtoP+6XMXneplp743UmH91RDtt5+4Oq900+wTAB9PB+io9n97bUkWf+916TkmPUI/a6IophGhE1sf82nE0W+m4AErUsRAHPXLdL6e6bpwfz/suIlxTA9uOnqBDuveR2A0Hw5fkSeOw1owoOa/f6d/l3McH8imZrXm415ImB/kkIC3iibQZSjI8fGV6LFK33Gii6RB2/pLsn3P0uHvErQQ3HewfSmKOk6xIUZYdj8+HZznnXFpiAlVq8SkSOGAoZFKuVivaG3knZq92GTHl3zGmuN6mZSOG47PsU8i+sx0yaCweIxrK/GcjycY78PATqLjqqLoLyz+/RfzfYBeauYk8iPaRSaasnVXesHc280xcCoX1U4jBuFlqeheDj/cLCKocTxMBP8bDRxAJdZoMTi2f9a/vsyw/8esbGUbXHIEVDAxhGswqV2seBqFkaT/VIY1HmMImHKwhn1rh4kZiDyuaudp31uSaKeIIrBpzRlTUob2YnT5vciqT51a2T/tUpUyYvFMsf25nUjWjOyy7ay4drmZI="
 

@@ -1,6 +1,6 @@
 # Libbrotli Build Package
 
-[![TravisCI](https://img.shields.io/travis/charlesportwoodii/libbrotli-build.svg?style=flat-square "TravisCI")](https://travis-ci.org/charlesportwoodii/libbrotli-build)
+[![TravisCI](https://img.shields.io/travis/charlesportwoodii/libbrotli-build.svg?style=flat-square "TravisCI")](https://travis-ci.com/charlesportwoodii/libbrotli-build)
 
 This package provides automated builds for libbrotli
 
