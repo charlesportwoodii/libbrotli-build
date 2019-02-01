@@ -10,6 +10,7 @@ env:
   - BUILD_IMAGE=alpine3.6
   - BUILD_IMAGE=alpine3.7
   - BUILD_IMAGE=alpine3.8
+  - BUILD_IMAGE=alpine3.9
 
 language: generic
 services:
