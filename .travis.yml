@@ -18,12 +18,11 @@ services:
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
-  - export DOCKER_COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
   - curl -L "https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - if [ "$BUILD_OS" == "Ubuntu" ]; then mkdir -p build/deb/$BUILD_IMAGE; fi
-  - if [ "$BUILD_OS" == "Alpine" ]; then mkdir -[ build/alpine/v$BUILD_OS_VERSION/x86_64; fi
+  - if [ "$BUILD_OS" == "Alpine" ]; then mkdir -p build/alpine/v$BUILD_OS_VERSION/x86_64; fi
   - if [ "$BUILD_OS" == "CentOS" ] || [ "$BUILD_OS" == "RHEL" ]; then mkdir -p build/rpm/$OS/$BUILD_OS_VERSION/x86_64; fi
 
 script:
