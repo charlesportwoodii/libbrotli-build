@@ -7,10 +7,10 @@ env:
   - BUILD_IMAGE=trusty
   - BUILD_IMAGE=centos7
   - BUILD_IMAGE=rhel7
-  - BUILD_IMAGE=alpine3.6
   - BUILD_IMAGE=alpine3.7
   - BUILD_IMAGE=alpine3.8
   - BUILD_IMAGE=alpine3.9
+  - BUILD_IMAGE=alpine3.10
 
 language: generic
 services:
@@ -29,10 +29,10 @@ script:
   - if [ "$BUILD_IMAGE" == "trusty" ] || [ "$BUILD_IMAGE" == "xenial" ] || [ "$BUILD_IMAGE" == "bionic" ]; then mv *$BUILD_IMAGE*.deb build/deb/$BUILD_IMAGE; fi
   - if [ "$BUILD_IMAGE" == "centos7" ]; then mv *.rpm build/rpm/CentOS/7/x86_64; fi
   - if [ "$BUILD_IMAGE" == "rhel7" ]; then mv *.rpm build/rpm/RHEL/7/x86_64; fi
-  - if [ "$BUILD_IMAGE" == "alpine3.6" ]; then mv *.apk build/alpine/v3.6/x86_64; fi
   - if [ "$BUILD_IMAGE" == "alpine3.7" ]; then mv *.apk build/alpine/v3.7/x86_64; fi
   - if [ "$BUILD_IMAGE" == "alpine3.8" ]; then mv *.apk build/alpine/v3.8/x86_64; fi
   - if [ "$BUILD_IMAGE" == "alpine3.9" ]; then mv *.apk build/alpine/v3.9/x86_64; fi
+  - if [ "$BUILD_IMAGE" == "alpine3.10" ]; then mv *.apk build/alpine/v3.10/x86_64; fi
   - find build -type f
 
 deploy:
