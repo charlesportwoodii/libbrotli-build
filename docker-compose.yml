@@ -27,6 +27,15 @@ services:
         environment:
             - VERSION=$VERSION
             - RELEASEVER=$RELEASEVER
+    focal:
+        image: charlesportwoodii/ubuntu:20.04-build
+        command: bash -lc "make build fpm_debian VERSION=$VERSION RELEASEVER=$RELEASEVER"
+        volumes:
+            - ${PWD-.}:/data
+        working_dir: /data
+        environment:
+            - VERSION=$VERSION
+            - RELEASEVER=$RELEASEVER
     centos7:
         image: charlesportwoodii/centos:7-build
         command: bash -lc "make build fpm_rpm VERSION=$VERSION RELEASEVER=$RELEASEVER"
@@ -73,6 +82,15 @@ services:
             - VERSION=$VERSION
             - RELEASEVER=$RELEASEVER
     alpine3.10:
+        image: charlesportwoodii/alpine:3.10-build
+        command: bash -lc "make build fpm_alpine VERSION=$VERSION RELEASEVER=$RELEASEVER"
+        volumes:
+            - ${PWD-.}:/data
+        working_dir: /data
+        environment:
+            - VERSION=$VERSION
+            - RELEASEVER=$RELEASEVER
+    alpine3.11:
         image: charlesportwoodii/alpine:3.10-build
         command: bash -lc "make build fpm_alpine VERSION=$VERSION RELEASEVER=$RELEASEVER"
         volumes:
