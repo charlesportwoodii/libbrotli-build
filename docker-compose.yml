@@ -91,7 +91,16 @@ services:
             - VERSION=$VERSION
             - RELEASEVER=$RELEASEVER
     alpine3.11:
-        image: charlesportwoodii/alpine:3.10-build
+        image: charlesportwoodii/alpine:3.11-build
+        command: bash -lc "make build fpm_alpine VERSION=$VERSION RELEASEVER=$RELEASEVER"
+        volumes:
+            - ${PWD-.}:/data
+        working_dir: /data
+        environment:
+            - VERSION=$VERSION
+            - RELEASEVER=$RELEASEVER
+    alpine3.14:
+        image: charlesportwoodii/alpine:3.14-build
         command: bash -lc "make build fpm_alpine VERSION=$VERSION RELEASEVER=$RELEASEVER"
         volumes:
             - ${PWD-.}:/data
